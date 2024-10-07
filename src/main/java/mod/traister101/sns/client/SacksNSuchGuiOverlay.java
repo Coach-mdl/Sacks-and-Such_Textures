@@ -1,7 +1,7 @@
 package mod.traister101.sns.client;
 
 import mod.traister101.sns.common.capability.LunchboxCapability;
-import mod.traister101.sns.common.items.LunchBoxItem;
+import mod.traister101.sns.common.items.*;
 import mod.traister101.sns.util.SNSUtils;
 
 import net.minecraft.client.Minecraft;
@@ -26,13 +26,11 @@ public enum SacksNSuchGuiOverlay {
 		final ItemStack currentItem;
 		{
 			final ItemStack mainHandItem = player.getMainHandItem();
-			// TODO add this back when the content is finished
-			/*if (!mainHandItem.is(SNSItems.LUNCHBOX.get())) {
+			if (!mainHandItem.is(SNSItems.LUNCHBOX.get())) {
 				final ItemStack offhandItem = player.getOffhandItem();
 				if (!offhandItem.is(SNSItems.LUNCHBOX.get())) return;
 				currentItem = offhandItem;
-			} else */
-			currentItem = mainHandItem;
+			} else currentItem = mainHandItem;
 		}
 
 		currentItem.getCapability(LunchboxCapability.LUNCHBOX).ifPresent(lunchboxHandler -> {

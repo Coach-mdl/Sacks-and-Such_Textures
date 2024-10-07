@@ -29,11 +29,10 @@ public final class SNSItems {
 	public static final RegistryObject<ContainerItem> SEED_POUCH = registerContainerItem(DefaultContainers.SEED_POUCH);
 	public static final RegistryObject<ContainerItem> FRAME_PACK = registerContainerItem(DefaultContainers.FRAME_PACK,
 			new Properties().stacksTo(1).rarity(Rarity.UNCOMMON));
-	// TODO add this back when the content is finished
-//	public static final RegistryObject<LunchBoxItem> LUNCHBOX = register("lunchbox",
-//			() -> new LunchBoxItem(new Properties(), DefaultContainers.LUNCHBOX));
+	public static final RegistryObject<LunchBoxItem> LUNCHBOX = register("lunchbox",
+			() -> new LunchBoxItem(new Properties(), DefaultContainers.LUNCHBOX));
 
-//	public static final RegistryObject<MobNetItem> MOB_NET_ITEM = register("mob_net", () -> new MobNetItem(new Properties()));
+	public static final RegistryObject<MobNetItem> MOB_NET_ITEM = register("mob_net", () -> new MobNetItem(new Properties()));
 
 	private static RegistryObject<ContainerItem> registerContainerItem(final ContainerType containerType) {
 		return registerContainerItem(containerType, new Properties().stacksTo(1));

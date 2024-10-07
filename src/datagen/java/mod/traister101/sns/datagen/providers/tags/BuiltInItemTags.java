@@ -29,8 +29,7 @@ public class BuiltInItemTags extends ItemTagsProvider {
 	@Override
 	protected void addTags(final Provider provider) {
 		tag(SNSItemTags.PREVENTED_IN_ITEM_CONTAINERS).add(SNSItems.STRAW_BASKET.get(), SNSItems.LEATHER_SACK.get(), SNSItems.BURLAP_SACK.get(),
-				SNSItems.ORE_SACK.get(), SNSItems.SEED_POUCH.get(),
-				SNSItems.FRAME_PACK.get()/*TODO add back when content done, SNSItems.LUNCHBOX.get()*/);
+				SNSItems.ORE_SACK.get(), SNSItems.SEED_POUCH.get(), SNSItems.FRAME_PACK.get(), SNSItems.LUNCHBOX.get());
 		tag(SNSItemTags.ALLOWED_IN_SEED_POUCH).addTag(SNSItemTags.TFC_SEEDS);
 		tag(SNSItemTags.ALLOWED_IN_ORE_SACK).addTag(SNSItemTags.TFC_SMALL_ORE_PIECES).addTag(SNSItemTags.TFC_ORE_PIECES);
 		tag(SNSItemTags.LUNCHBOX_FOOD).add(TFCItems.FOOD.get(Food.BARLEY_BREAD_SANDWICH).get(),

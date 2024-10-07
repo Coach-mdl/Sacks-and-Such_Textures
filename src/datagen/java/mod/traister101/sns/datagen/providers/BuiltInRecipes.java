@@ -119,27 +119,26 @@ public class BuiltInRecipes extends RecipeProvider {
 				.unlockedBy("has_leather", has(Items.LEATHER))
 				.unlockedBy("has_sewing_needle", has(TFCTags.Items.SEWING_NEEDLES))
 				.save(writer);
-// TODO add this back when the content is finished
-//
-//		ShapedRecipeBuilder.shaped(SNSItems.MOB_NET_ITEM.get())
-//				.pattern("R R", " R ", "R R")
-//				.define('R', SNSItems.REINFORCED_FIBER.get())
-//				.unlockedBy("has_reinforced_fiber", has(SNSItems.REINFORCED_FIBER.get()))
-//				.save(writer);
-//
-//		{
-//			final var wroughtIronRodsTag = TagKey.create(Registries.ITEM, new ResourceLocation("forge", "rods/wrought_iron"));
-//			final var wroughtIronSheetsTag = TagKey.create(Registries.ITEM, new ResourceLocation("forge", "sheets/wrought_iron"));
-//			ShapedRecipeBuilder.shaped(SNSItems.LUNCHBOX.get())
-//					.pattern("RRR", "SFS", " S ")
-//					.define('R', wroughtIronRodsTag)
-//					.define('S', wroughtIronSheetsTag)
-//					.define('F', SNSItems.REINFORCED_FABRIC.get())
-//					.unlockedBy("has_wrought_iron_rods", has(wroughtIronRodsTag))
-//					.unlockedBy("has_wrought_iron_sheets", has(wroughtIronSheetsTag))
-//					.unlockedBy("has_reinforced_fabric", has(SNSItems.REINFORCED_FABRIC.get()))
-//					.save(writer);
-//		}
+
+		ShapedRecipeBuilder.shaped(SNSItems.MOB_NET_ITEM.get())
+				.pattern("R R", " R ", "R R")
+				.define('R', SNSItems.REINFORCED_FIBER.get())
+				.unlockedBy("has_reinforced_fiber", has(SNSItems.REINFORCED_FIBER.get()))
+				.save(writer);
+
+		{
+			final var wroughtIronRodsTag = TagKey.create(Registries.ITEM, new ResourceLocation("forge", "rods/wrought_iron"));
+			final var wroughtIronSheetsTag = TagKey.create(Registries.ITEM, new ResourceLocation("forge", "sheets/wrought_iron"));
+			ShapedRecipeBuilder.shaped(SNSItems.LUNCHBOX.get())
+					.pattern("RRR", "SFS", " S ")
+					.define('R', wroughtIronRodsTag)
+					.define('S', wroughtIronSheetsTag)
+					.define('F', SNSItems.REINFORCED_FABRIC.get())
+					.unlockedBy("has_wrought_iron_rods", has(wroughtIronRodsTag))
+					.unlockedBy("has_wrought_iron_sheets", has(wroughtIronSheetsTag))
+					.unlockedBy("has_reinforced_fabric", has(SNSItems.REINFORCED_FABRIC.get()))
+					.save(writer);
+		}
 
 		writer.accept(new LeatherKnapping(SNSItems.UNFINISHED_LEATHER_SACK.get(), " XXX ", "XXXXX", "XXXXX", "XXXXX", " XXX "));
 		writer.accept(new Loom(new ItemStackIngredient(Ingredient.of(SNSItems.REINFORCED_FIBER.get()), 16), SNSItems.REINFORCED_FABRIC.get(), 1, 16,
