@@ -227,8 +227,9 @@ public class ContainerItem extends Item implements IItemSize {
 			tooltip.add(Component.translatable(VOID_TOOLTIP, SNSUtils.toggleTooltip(NBTHelper.isAutoVoid(itemStack))).withStyle(ChatFormatting.GRAY));
 		}
 
-		tooltip.add(Component.translatable(INVENTORY_INTERACTION_TOOLTIP, SNSUtils.toggleTooltip(type.doesInventoryInteraction()))
-				.withStyle(ChatFormatting.GRAY));
+		if (type.doesInventoryInteraction()) {
+			tooltip.add(Component.translatable(INVENTORY_INTERACTION_TOOLTIP, SNSUtils.toggleTooltip(true)).withStyle(ChatFormatting.GRAY));
+		}
 	}
 
 	@Override
@@ -315,7 +316,9 @@ public class ContainerItem extends Item implements IItemSize {
 	@Override
 	public Weight getWeight(final ItemStack itemStack) {
 		return itemStack.getCapability(ForgeCapabilities.ITEM_HANDLER)
-				.map(handler -> handler instanceof final ContainerItemHandler containerItemHandler ? containerItemHandler.getWeight() : Weight.VERY_HEAVY)
+				.map(handler -> handler instanceof final ContainerItemHandler containerItemHandler ?
+						containerItemHandler.getWeight() :
+						Weight.VERY_HEAVY)
 				.orElse(Weight.VERY_HEAVY);
 	}
 
