@@ -35,7 +35,7 @@ public class ContainerItem extends Item implements IItemSize {
 	public static final String CONTENTS_TAG = "contents";
 	public static final String TYPE_NO_PICKUP = SacksNSuch.MODID + ".status.item_container.no_pickup";
 	public static final String TYPE_NO_VOID = SacksNSuch.MODID + ".status.item_container.no_void";
-	public static final String HOLD_SHIFT_TOOLTIP = SacksNSuch.MODID + "tooltip.item_container.tooltip.shift";
+	public static final String HOLD_SHIFT_TOOLTIP = SacksNSuch.MODID + ".tooltip.item_container.tooltip.shift";
 	public static final String PICKUP_TOOLTIP = SacksNSuch.MODID + ".tooltip.item_container.tooltip.pickup";
 	public static final String VOID_TOOLTIP = SacksNSuch.MODID + ".tooltip.item_container.tooltip.void";
 	public static final String SLOT_COUNT_TOOLTIP = SacksNSuch.MODID + ".tooltip.item_container.slot_count";

@@ -2,7 +2,7 @@ package mod.traister101.sns.datagen.providers;
 
 import com.google.gson.*;
 import mod.traister101.sns.SacksNSuch;
-import mod.traister101.sns.common.items.SNSItems;
+import mod.traister101.sns.common.items.*;
 import mod.traister101.sns.datagen.recipes.CraftingRecipeBuilder;
 import mod.traister101.sns.datagen.recipes.*;
 import net.dries007.tfc.common.TFCTags;
@@ -11,6 +11,7 @@ import net.dries007.tfc.common.capabilities.forge.ForgeRule;
 import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.common.recipes.TFCRecipeSerializers;
 import net.dries007.tfc.common.recipes.ingredients.ItemStackIngredient;
+import net.dries007.tfc.util.Metal;
 import net.dries007.tfc.util.Metal.*;
 
 import net.minecraft.core.registries.Registries;
@@ -34,7 +35,6 @@ public class BuiltInRecipes extends RecipeProvider {
 		super(packOutput);
 	}
 
-
 	private static void craftingItems(final Consumer<FinishedRecipe> writer) {
 		CraftingRecipeBuilder.shaped(SNSItems.REINFORCED_FIBER.get())
 				.pattern("JJJ", "SSS", "JJJ")
@@ -44,8 +44,8 @@ public class BuiltInRecipes extends RecipeProvider {
 				.unlockedBy("has_string", has(Tags.Items.STRING))
 				.save(writer);
 
+		final TagKey<Item> steelRodsTag = TagKey.create(Registries.ITEM, new ResourceLocation("forge", "rods/steel"));
 		{
-			final var steelRodsTag = TagKey.create(Registries.ITEM, new ResourceLocation("forge", "rods/steel"));
 			CraftingRecipeBuilder.shaped(SNSItems.PACK_FRAME.get())
 					.pattern("RRR", "R R", "RRR")
 					.define('R', steelRodsTag)
@@ -77,6 +77,14 @@ public class BuiltInRecipes extends RecipeProvider {
 				new ItemStack(SNSItems.BUCKLE.get()), Default.STEEL.metalTier().ordinal(),
 				new ForgeRule[] {ForgeRule.PUNCH_LAST, ForgeRule.PUNCH_LAST, ForgeRule.PUNCH_LAST}, true,
 				new ResourceLocation(SacksNSuch.MODID, "steel_buckle")));
+
+		horseshoeAnvilRecipe(writer, steelRodsTag, SNSItems.STEEL_HORSESHOE.get(), Default.STEEL.metalTier());
+		final TagKey<Item> blackSteelRods = TagKey.create(Registries.ITEM, new ResourceLocation("forge", "rods/black_steel"));
+		horseshoeAnvilRecipe(writer, blackSteelRods, SNSItems.BLACK_STEEL_HORSESHOE.get(), Default.BLACK_STEEL.metalTier());
+		final TagKey<Item> blueSteelRods = TagKey.create(Registries.ITEM, new ResourceLocation("forge", "rods/blue_steel"));
+		horseshoeAnvilRecipe(writer, blueSteelRods, SNSItems.BLUE_STEEL_HORSESHOE.get(), Default.BLUE_STEEL.metalTier());
+		final TagKey<Item> redSteelRods = TagKey.create(Registries.ITEM, new ResourceLocation("forge", "rods/red_steel"));
+		horseshoeAnvilRecipe(writer, redSteelRods, SNSItems.RED_STEEL_HORSESHOE.get(), Default.RED_STEEL.metalTier());
 	}
 
 	private static void containerItems(final Consumer<FinishedRecipe> writer) {
@@ -171,6 +179,15 @@ public class BuiltInRecipes extends RecipeProvider {
 		}
 	}
 
+	private static void horseshoeAnvilRecipe(final Consumer<FinishedRecipe> writer, final TagKey<Item> input, final Item result,
+			final Metal.Tier tier) {
+		writer.accept(new AnvilRecipe(Ingredient.of(input), new ItemStack(result), tier.ordinal(),
+				new ForgeRule[] {ForgeRule.BEND_THIRD_LAST, ForgeRule.BEND_SECOND_LAST, ForgeRule.UPSET_LAST}, false));
+	}
+
+	private static void horseshoeRecipe(final Horseshoes result, final Item horseshoe, final Consumer<FinishedRecipe> writer) {
+		CraftingRecipeBuilder.shapeless(result).requires(horseshoe, 4).unlockedBy("has_horseshoe", has(horseshoe)).save(writer);
+	}
 
 	private static void safetyToeHikingBoots(final HikingBootsItem hikingBootsItem, final TagKey<Item> metalSheetsTag,
 			final Consumer<FinishedRecipe> writer) {
@@ -224,8 +241,12 @@ public class BuiltInRecipes extends RecipeProvider {
 			final var redSteelSheets = TagKey.create(Registries.ITEM, new ResourceLocation("forge", "sheets/red_steel"));
 			safetyToeHikingBoots(SNSItems.RED_STEEL_TOE_HIKING_BOOTS.get(), redSteelSheets, writer);
 		}
-	}
 
+		horseshoeRecipe(SNSItems.STEEL_HORSESHOES.get(), SNSItems.STEEL_HORSESHOE.get(), writer);
+		horseshoeRecipe(SNSItems.BLACK_STEEL_HORSESHOES.get(), SNSItems.BLACK_STEEL_HORSESHOE.get(), writer);
+		horseshoeRecipe(SNSItems.BLUE_STEEL_HORSESHOES.get(), SNSItems.BLUE_STEEL_HORSESHOE.get(), writer);
+		horseshoeRecipe(SNSItems.RED_STEEL_HORSESHOES.get(), SNSItems.RED_STEEL_HORSESHOE.get(), writer);
+	}
 
 	// TODO this is gross
 	public static class LeatherKnapping implements FinishedRecipe {

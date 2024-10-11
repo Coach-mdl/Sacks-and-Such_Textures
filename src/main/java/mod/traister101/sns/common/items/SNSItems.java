@@ -4,6 +4,8 @@ import mod.traister101.sns.SacksNSuch;
 import mod.traister101.sns.common.BootsArmorMaterial;
 import mod.traister101.sns.config.SNSConfig;
 import mod.traister101.sns.util.ContainerType;
+import net.dries007.tfc.util.Metal.Default;
+import net.dries007.tfc.util.registry.RegistryMetal;
 
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.Item.Properties;
@@ -25,6 +27,10 @@ public final class SNSItems {
 	public static final RegistryObject<Item> LEATHER_STRIP = registerSimple("leather_strip");
 	public static final RegistryObject<Item> BOUND_LEATHER_STRIP = registerSimple("bound_leather_strip");
 	public static final RegistryObject<Item> BUCKLE = registerSimple("buckle");
+	public static final RegistryObject<Item> STEEL_HORSESHOE = registerHorseshoe(Default.STEEL);
+	public static final RegistryObject<Item> BLACK_STEEL_HORSESHOE = registerHorseshoe(Default.BLACK_STEEL);
+	public static final RegistryObject<Item> BLUE_STEEL_HORSESHOE = registerHorseshoe(Default.BLUE_STEEL);
+	public static final RegistryObject<Item> RED_STEEL_HORSESHOE = registerHorseshoe(Default.RED_STEEL);
 
 	// Container Items
 	public static final RegistryObject<ContainerItem> STRAW_BASKET = registerContainerItem(DefaultContainers.STRAW_BASKET);
@@ -58,6 +64,26 @@ public final class SNSItems {
 	public static final RegistryObject<HikingBootsItem> RED_STEEL_TOE_HIKING_BOOTS = register("red_steel_toe_hiking_boots",
 			() -> new HikingBootsItem(new Properties().stacksTo(1).rarity(Rarity.EPIC), BootsArmorMaterial.RED_STEEL_TOE_HIKING_BOOTS,
 					SNSConfig.SERVER.redSteelToeHikingBoots.movementSpeed, SNSConfig.SERVER.redSteelToeHikingBoots.stepHeight));
+
+	public static final RegistryObject<Horseshoes> STEEL_HORSESHOES = registerHorseShoes(Default.STEEL, SNSConfig.SERVER.steelHorseshoeSpeedModifier);
+
+	public static final RegistryObject<Horseshoes> BLACK_STEEL_HORSESHOES = registerHorseShoes(Default.BLACK_STEEL,
+			SNSConfig.SERVER.blackSteelHorseshoeSpeedModifier);
+
+	public static final RegistryObject<Horseshoes> BLUE_STEEL_HORSESHOES = registerHorseShoes(Default.BLUE_STEEL,
+			SNSConfig.SERVER.blueSteelHorseshoeSpeedModifier);
+
+	public static final RegistryObject<Horseshoes> RED_STEEL_HORSESHOES = registerHorseShoes(Default.RED_STEEL,
+			SNSConfig.SERVER.blueSteelHorseshoeSpeedModifier);
+
+	private static RegistryObject<Item> registerHorseshoe(final RegistryMetal metal) {
+		return registerSimple("metal/horseshoe/" + metal.getSerializedName(), new Properties().rarity(metal.getRarity()));
+	}
+
+	private static RegistryObject<Horseshoes> registerHorseShoes(final RegistryMetal metal, final Supplier<Double> horseshoeSpeedModifier) {
+		return register("metal/horseshoes/" + metal.getSerializedName(),
+				() -> new Horseshoes(new Properties().durability(metal.toolTier().getUses()).rarity(metal.getRarity()), horseshoeSpeedModifier));
+	}
 
 	private static RegistryObject<ContainerItem> registerContainerItem(final ContainerType containerType) {
 		return registerContainerItem(containerType, new Properties().stacksTo(1));

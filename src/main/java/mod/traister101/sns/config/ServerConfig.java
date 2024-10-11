@@ -20,6 +20,11 @@ public final class ServerConfig {
 	public final BootsConfig blackSteelToeHikingBoots;
 	public final BootsConfig blueSteelToeHikingBoots;
 	public final BootsConfig redSteelToeHikingBoots;
+	public final IntValue horseshoeStepsPerDamage;
+	public final DoubleValue steelHorseshoeSpeedModifier;
+	public final DoubleValue blackSteelHorseshoeSpeedModifier;
+	public final DoubleValue blueSteelHorseshoeSpeedModifier;
+	public final DoubleValue redSteelHorseshoeSpeedModifier;
 	public final BooleanValue doPickup;
 	public final BooleanValue doVoiding;
 	public final BooleanValue allPickup;
@@ -53,6 +58,21 @@ public final class ServerConfig {
 		blackSteelToeHikingBoots = BootsConfig.buildBootsConfig(builder, "Black Steel Toe Boots", 0.15, 0.5);
 		blueSteelToeHikingBoots = BootsConfig.buildBootsConfig(builder, "Blue Steel Toe Boots", 0.2, 0.5);
 		redSteelToeHikingBoots = BootsConfig.buildBootsConfig(builder, "Red Steel Toe Boots", 0.2, 0.5);
+
+		builder.pop();
+
+		builder.push("Horseshoe config");
+
+		horseshoeStepsPerDamage = builder.comment("The amount of steps taken before one point of durability is lost")
+				.defineInRange("horseshoeStepsPerDamage", 500, 0, Integer.MAX_VALUE);
+		steelHorseshoeSpeedModifier = builder.comment("The movement speed bonus the Steel Horseshoes provide")
+				.defineInRange("steelHorseshoeSpeedModifier", 0.05, 0, 2);
+		blackSteelHorseshoeSpeedModifier = builder.comment("The movement speed bonus the Black Steel Horseshoes provide")
+				.defineInRange("blackSteelHorseshoeSpeedModifier", 0.1, 0, 2);
+		blueSteelHorseshoeSpeedModifier = builder.comment("The movement speed bonus the Blue Steel Horseshoes provide")
+				.defineInRange("blueSteelHorseshoeSpeedModifier", 0.2, 0, 2);
+		redSteelHorseshoeSpeedModifier = builder.comment("The movement speed bonus the Red Steel Horseshoes provide")
+				.defineInRange("redSteelHorseshoeSpeedModifier", 0.2, 0, 2);
 
 		builder.pop();
 

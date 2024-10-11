@@ -17,6 +17,10 @@ import java.util.stream.Collectors;
 
 public class BuiltIntLanguage extends SmartLanguageProvider {
 
+	private static final Set<RegistryObject<? extends Item>> MANUAL_ITEM_LANG = Set.of(SNSItems.STEEL_HORSESHOE, SNSItems.BLACK_STEEL_HORSESHOE,
+			SNSItems.BLUE_STEEL_HORSESHOE, SNSItems.RED_STEEL_HORSESHOE, SNSItems.STEEL_HORSESHOES, SNSItems.BLACK_STEEL_HORSESHOES,
+			SNSItems.BLUE_STEEL_HORSESHOES, SNSItems.RED_STEEL_HORSESHOES);
+
 	public BuiltIntLanguage(final PackOutput output) {
 		super(output, SacksNSuch.MODID, "en_us");
 	}
@@ -55,6 +59,7 @@ public class BuiltIntLanguage extends SmartLanguageProvider {
 		add(MobNetItem.CANNOT_CAPTURE_SIZE, "The %s is too large to capture");
 		add(MobNetItem.CANNOT_PLACE, "There's not enough space to release captured %s");
 		add(MobNetItem.STACK_NAME, "%s (%s)");
+		add(Horseshoes.HORSESHOE_MODIFIER_TOOLTIP, "When on Horse:");
 		add(ToggleType.PICKUP.langKey, "Item Pickup %s");
 		add(ToggleType.VOID.langKey, "Item Voiding %s");
 		add(SNSUtils.ENABLED, "Enabled");
@@ -69,7 +74,15 @@ public class BuiltIntLanguage extends SmartLanguageProvider {
 	}
 
 	private void addItemTranslations() {
-		SNSItems.ITEMS.getEntries().forEach(this::addSimpleItem);
+		SNSItems.ITEMS.getEntries().stream().filter(o -> !MANUAL_ITEM_LANG.contains(o)).forEach(this::addSimpleItem);
+		addItem(SNSItems.STEEL_HORSESHOE, "Steel Horseshoe");
+		addItem(SNSItems.BLACK_STEEL_HORSESHOE, "Black Steel Horseshoe");
+		addItem(SNSItems.BLUE_STEEL_HORSESHOE, "Blue Steel Horseshoe");
+		addItem(SNSItems.RED_STEEL_HORSESHOE, "Red Steel Horseshoe");
+		addItem(SNSItems.STEEL_HORSESHOES, "Steel Horseshoes");
+		addItem(SNSItems.BLACK_STEEL_HORSESHOES, "Black Steel Horseshoes");
+		addItem(SNSItems.BLUE_STEEL_HORSESHOES, "Blue Steel Horseshoes");
+		addItem(SNSItems.RED_STEEL_HORSESHOES, "Red Steel Horseshoes");
 	}
 
 	private void addSimpleItem(final RegistryObject<Item> item) {
