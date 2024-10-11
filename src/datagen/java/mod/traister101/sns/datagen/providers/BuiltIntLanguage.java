@@ -12,7 +12,7 @@ import net.minecraft.world.item.Item;
 
 import net.minecraftforge.registries.RegistryObject;
 
-import java.util.Arrays;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class BuiltIntLanguage extends SmartLanguageProvider {

@@ -1,6 +1,8 @@
 package mod.traister101.sns.common.items;
 
 import mod.traister101.sns.SacksNSuch;
+import mod.traister101.sns.common.BootsArmorMaterial;
+import mod.traister101.sns.config.SNSConfig;
 import mod.traister101.sns.util.ContainerType;
 
 import net.minecraft.world.item.*;
@@ -20,6 +22,9 @@ public final class SNSItems {
 	public static final RegistryObject<Item> REINFORCED_FIBER = registerSimple("reinforced_fiber");
 	public static final RegistryObject<Item> REINFORCED_FABRIC = registerSimple("reinforced_fabric");
 	public static final RegistryObject<Item> PACK_FRAME = registerSimple("pack_frame", new Properties().rarity(Rarity.UNCOMMON));
+	public static final RegistryObject<Item> LEATHER_STRIP = registerSimple("leather_strip");
+	public static final RegistryObject<Item> BOUND_LEATHER_STRIP = registerSimple("bound_leather_strip");
+	public static final RegistryObject<Item> BUCKLE = registerSimple("buckle");
 
 	// Container Items
 	public static final RegistryObject<ContainerItem> STRAW_BASKET = registerContainerItem(DefaultContainers.STRAW_BASKET);
@@ -33,6 +38,26 @@ public final class SNSItems {
 			() -> new LunchBoxItem(new Properties(), DefaultContainers.LUNCHBOX));
 
 	public static final RegistryObject<MobNetItem> MOB_NET_ITEM = register("mob_net", () -> new MobNetItem(new Properties()));
+
+	public static final RegistryObject<HikingBootsItem> HIKING_BOOTS = register("hiking_boots",
+			() -> new HikingBootsItem(new Properties().stacksTo(1), BootsArmorMaterial.HIKING_BOOTS, SNSConfig.SERVER.hikingBoots.movementSpeed,
+					SNSConfig.SERVER.hikingBoots.stepHeight));
+
+	public static final RegistryObject<HikingBootsItem> STEEL_TOE_HIKING_BOOTS = register("steel_toe_hiking_boots",
+			() -> new HikingBootsItem(new Properties().stacksTo(1).rarity(Rarity.UNCOMMON), BootsArmorMaterial.STEEL_TOE_HIKING_BOOTS,
+					SNSConfig.SERVER.steelToeHikingBoots.movementSpeed, SNSConfig.SERVER.steelToeHikingBoots.stepHeight));
+
+	public static final RegistryObject<HikingBootsItem> BLACK_STEEL_TOE_HIKING_BOOTS = register("black_steel_toe_hiking_boots",
+			() -> new HikingBootsItem(new Properties().stacksTo(1).rarity(Rarity.RARE), BootsArmorMaterial.BLACK_STEEL_TOE_HIKING_BOOTS,
+					SNSConfig.SERVER.blackSteelToeHikingBoots.movementSpeed, SNSConfig.SERVER.blackSteelToeHikingBoots.stepHeight));
+
+	public static final RegistryObject<HikingBootsItem> BLUE_STEEL_TOE_HIKING_BOOTS = register("blue_steel_toe_hiking_boots",
+			() -> new HikingBootsItem(new Properties().stacksTo(1).rarity(Rarity.EPIC), BootsArmorMaterial.BLUE_STEEL_TOE_HIKING_BOOTS,
+					SNSConfig.SERVER.blueSteelToeHikingBoots.movementSpeed, SNSConfig.SERVER.blueSteelToeHikingBoots.stepHeight));
+
+	public static final RegistryObject<HikingBootsItem> RED_STEEL_TOE_HIKING_BOOTS = register("red_steel_toe_hiking_boots",
+			() -> new HikingBootsItem(new Properties().stacksTo(1).rarity(Rarity.EPIC), BootsArmorMaterial.RED_STEEL_TOE_HIKING_BOOTS,
+					SNSConfig.SERVER.redSteelToeHikingBoots.movementSpeed, SNSConfig.SERVER.redSteelToeHikingBoots.stepHeight));
 
 	private static RegistryObject<ContainerItem> registerContainerItem(final ContainerType containerType) {
 		return registerContainerItem(containerType, new Properties().stacksTo(1));
