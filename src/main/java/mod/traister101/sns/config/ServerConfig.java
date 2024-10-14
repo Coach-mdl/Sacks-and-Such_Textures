@@ -7,6 +7,7 @@ import net.minecraftforge.common.ForgeConfigSpec.*;
 
 public final class ServerConfig {
 
+	// Containers
 	public final ContainerConfig strawBasket;
 	public final ContainerConfig leatherSack;
 	public final ContainerConfig burlapSack;
@@ -14,17 +15,23 @@ public final class ServerConfig {
 	public final ContainerConfig seedPouch;
 	public final ContainerConfig framePack;
 	public final ContainerConfig lunchBox;
+
+	// Boots
 	public final IntValue bootsStepPerDamage;
 	public final BootsConfig hikingBoots;
 	public final BootsConfig steelToeHikingBoots;
 	public final BootsConfig blackSteelToeHikingBoots;
 	public final BootsConfig blueSteelToeHikingBoots;
 	public final BootsConfig redSteelToeHikingBoots;
+
+	// Horseshoes
 	public final IntValue horseshoeStepsPerDamage;
 	public final DoubleValue steelHorseshoeSpeedModifier;
 	public final DoubleValue blackSteelHorseshoeSpeedModifier;
 	public final DoubleValue blueSteelHorseshoeSpeedModifier;
 	public final DoubleValue redSteelHorseshoeSpeedModifier;
+
+	// Globals
 	public final BooleanValue doPickup;
 	public final BooleanValue doVoiding;
 	public final BooleanValue allPickup;
@@ -32,6 +39,8 @@ public final class ServerConfig {
 	public final BooleanValue allAllowOre;
 	public final BooleanValue allAllowFood;
 	public final BooleanValue enableContainerInventoryInteraction;
+
+	// Misc
 	public final DoubleValue traitLunchboxModifier;
 	public final DoubleValue maximumNetCaptureSize;
 
