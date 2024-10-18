@@ -3,8 +3,7 @@ package mod.traister101.sns.datagen.providers;
 import com.google.gson.*;
 import mod.traister101.sns.SacksNSuch;
 import mod.traister101.sns.common.items.SNSItems;
-import mod.traister101.sns.datagen.recipes.ShapedRecipeBuilder;
-import mod.traister101.sns.datagen.recipes.*;
+import mod.traister101.sns.datagen.recipes.CraftingRecipeBuilder;
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blocks.TFCBlocks;
 import net.dries007.tfc.common.items.TFCItems;
@@ -35,7 +34,7 @@ public class BuiltInRecipes extends RecipeProvider {
 
 	@Override
 	protected void buildRecipes(final Consumer<FinishedRecipe> writer) {
-		ShapedRecipeBuilder.shaped(SNSItems.REINFORCED_FIBER.get())
+		CraftingRecipeBuilder.shaped(SNSItems.REINFORCED_FIBER.get())
 				.pattern("JJJ", "SSS", "JJJ")
 				.define('J', TFCItems.JUTE_FIBER.get())
 				.define('S', Tags.Items.STRING)
@@ -45,14 +44,15 @@ public class BuiltInRecipes extends RecipeProvider {
 
 		{
 			final var steelRodsTag = TagKey.create(Registries.ITEM, new ResourceLocation("forge", "rods/steel"));
-			ShapedRecipeBuilder.shaped(SNSItems.PACK_FRAME.get())
+			CraftingRecipeBuilder.shaped(SNSItems.PACK_FRAME.get())
 					.pattern("RRR", "R R", "RRR")
 					.define('R', steelRodsTag)
 					.unlockedBy("has_steel_rod", has(steelRodsTag))
 					.save(writer);
 		}
 
-		DamageInputShapedRecipeBuilder.shaped(SNSItems.STRAW_BASKET.get())
+		CraftingRecipeBuilder.shaped(SNSItems.STRAW_BASKET.get())
+				.damageInputs()
 				.pattern("SSS", "T T", " TK")
 				.define('S', TFCItems.STRAW.get())
 				.define('T', TFCBlocks.THATCH.get())
@@ -62,7 +62,8 @@ public class BuiltInRecipes extends RecipeProvider {
 				.unlockedBy("has_knife", has(TFCTags.Items.KNIVES))
 				.save(writer);
 
-		DamageInputShapedRecipeBuilder.shaped(SNSItems.LEATHER_SACK.get())
+		CraftingRecipeBuilder.shaped(SNSItems.LEATHER_SACK.get())
+				.damageInputs()
 				.pattern("JJJ", "LUL", " LN")
 				.define('J', TFCItems.JUTE_FIBER.get())
 				.define('L', Tags.Items.LEATHER)
@@ -74,7 +75,8 @@ public class BuiltInRecipes extends RecipeProvider {
 				.unlockedBy("has_sewing_needle", has(TFCTags.Items.SEWING_NEEDLES))
 				.save(writer);
 
-		DamageInputShapedRecipeBuilder.shaped(SNSItems.BURLAP_SACK.get())
+		CraftingRecipeBuilder.shaped(SNSItems.BURLAP_SACK.get())
+				.damageInputs()
 				.pattern("JJJ", "B B", " BN")
 				.define('J', TFCItems.JUTE_FIBER.get())
 				.define('B', TFCItems.BURLAP_CLOTH.get())
@@ -84,7 +86,8 @@ public class BuiltInRecipes extends RecipeProvider {
 				.unlockedBy("has_sewing_needle", has(TFCTags.Items.SEWING_NEEDLES))
 				.save(writer);
 
-		DamageInputShapedRecipeBuilder.shaped(SNSItems.SEED_POUCH.get())
+		CraftingRecipeBuilder.shaped(SNSItems.SEED_POUCH.get())
+				.damageInputs()
 				.pattern("SSS", "WBW", " WN")
 				.define('S', Tags.Items.STRING)
 				.define('W', TFCItems.WOOL_CLOTH.get())
@@ -96,7 +99,8 @@ public class BuiltInRecipes extends RecipeProvider {
 				.unlockedBy("has_sewing_needle", has(TFCTags.Items.SEWING_NEEDLES))
 				.save(writer);
 
-		DamageInputShapedRecipeBuilder.shaped(SNSItems.ORE_SACK.get())
+		CraftingRecipeBuilder.shaped(SNSItems.ORE_SACK.get())
+				.damageInputs()
 				.pattern("RRR", "LBL", " LN")
 				.define('R', SNSItems.REINFORCED_FIBER.get())
 				.define('L', Tags.Items.LEATHER)
@@ -108,7 +112,8 @@ public class BuiltInRecipes extends RecipeProvider {
 				.unlockedBy("has_sewing_needle", has(TFCTags.Items.SEWING_NEEDLES))
 				.save(writer);
 
-		DamageInputShapedRecipeBuilder.shaped(SNSItems.FRAME_PACK.get())
+		CraftingRecipeBuilder.shaped(SNSItems.FRAME_PACK.get())
+				.damageInputs()
 				.pattern(" F ", "LPL", " FN")
 				.define('P', SNSItems.PACK_FRAME.get())
 				.define('F', SNSItems.REINFORCED_FABRIC.get())
@@ -120,7 +125,7 @@ public class BuiltInRecipes extends RecipeProvider {
 				.unlockedBy("has_sewing_needle", has(TFCTags.Items.SEWING_NEEDLES))
 				.save(writer);
 
-		ShapedRecipeBuilder.shaped(SNSItems.MOB_NET_ITEM.get())
+		CraftingRecipeBuilder.shaped(SNSItems.MOB_NET_ITEM.get())
 				.pattern("R R", " R ", "R R")
 				.define('R', SNSItems.REINFORCED_FIBER.get())
 				.unlockedBy("has_reinforced_fiber", has(SNSItems.REINFORCED_FIBER.get()))
@@ -129,7 +134,7 @@ public class BuiltInRecipes extends RecipeProvider {
 		{
 			final var wroughtIronRodsTag = TagKey.create(Registries.ITEM, new ResourceLocation("forge", "rods/wrought_iron"));
 			final var wroughtIronSheetsTag = TagKey.create(Registries.ITEM, new ResourceLocation("forge", "sheets/wrought_iron"));
-			ShapedRecipeBuilder.shaped(SNSItems.LUNCHBOX.get())
+			CraftingRecipeBuilder.shaped(SNSItems.LUNCHBOX.get())
 					.pattern("RRR", "SFS", " S ")
 					.define('R', wroughtIronRodsTag)
 					.define('S', wroughtIronSheetsTag)
