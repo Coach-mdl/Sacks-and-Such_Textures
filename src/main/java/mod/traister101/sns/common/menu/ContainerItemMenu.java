@@ -57,6 +57,10 @@ public class ContainerItemMenu extends ExtendedSlotCapacityMenu {
 		return new ContainerItemMenu(windowId, inventory, itemHandler, hand, hand == InteractionHand.OFF_HAND ? -1 : inventory.selected);
 	}
 
+	public int getContainerSlots() {
+		return containerSlots;
+	}
+
 	@Override
 	public ItemStack quickMoveStack(final Player player, final int slotIndex) {
 		final Slot slot = slots.get(slotIndex);
@@ -93,7 +97,11 @@ public class ContainerItemMenu extends ExtendedSlotCapacityMenu {
 
 	@Override
 	public boolean stillValid(final Player player) {
-		return !(hand == InteractionHand.MAIN_HAND ? slots.get(itemIndex).getItem() : this.player.getOffhandItem()).isEmpty();
+		return !getContainerStack().isEmpty();
+	}
+
+	public final ItemStack getContainerStack() {
+		return hand == InteractionHand.MAIN_HAND ? slots.get(itemIndex).getItem() : player.getOffhandItem();
 	}
 
 	/**

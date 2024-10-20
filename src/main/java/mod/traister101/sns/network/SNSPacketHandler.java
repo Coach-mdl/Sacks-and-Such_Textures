@@ -38,6 +38,8 @@ public final class SNSPacketHandler {
 		register(ServerboundTogglePacket.class, ServerboundTogglePacket::encode, ServerboundTogglePacket::new, ServerboundTogglePacket::handle);
 		register(ServerboundPacketCycleSlotPacket.class, ServerboundPacketCycleSlotPacket::encode, ServerboundPacketCycleSlotPacket::new,
 				ServerboundPacketCycleSlotPacket::handle);
+		register(ServerboundToggleSlotVoidingPacket.class, ServerboundToggleSlotVoidingPacket::encode, ServerboundToggleSlotVoidingPacket::new,
+				ServerboundToggleSlotVoidingPacket::handle);
 
 		register(ClientboundBreakHorseshoePacket.class, ClientboundBreakHorseshoePacket::encode, ClientboundBreakHorseshoePacket::new,
 				ClientboundBreakHorseshoePacket::handle);

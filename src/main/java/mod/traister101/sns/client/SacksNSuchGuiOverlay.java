@@ -1,6 +1,6 @@
 package mod.traister101.sns.client;
 
-import mod.traister101.sns.common.capability.LunchboxCapability;
+import mod.traister101.sns.common.capability.SNSCapabilities;
 import mod.traister101.sns.common.items.*;
 import mod.traister101.sns.util.SNSUtils;
 
@@ -33,7 +33,7 @@ public enum SacksNSuchGuiOverlay {
 			} else currentItem = mainHandItem;
 		}
 
-		currentItem.getCapability(LunchboxCapability.LUNCHBOX).ifPresent(lunchboxHandler -> {
+		currentItem.getCapability(SNSCapabilities.LUNCHBOX).ifPresent(lunchboxHandler -> {
 			final ItemStack selectedStack = lunchboxHandler.getSelectedStack();
 
 			if (!selectedStack.isEmpty()) {

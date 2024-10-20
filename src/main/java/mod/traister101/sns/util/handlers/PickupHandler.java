@@ -168,30 +168,11 @@ public final class PickupHandler {
 
 			remainder = ItemHandlerHelper.insertItem(maybeContainerInv.get(), remainder, false);
 
-			if (remainder.isEmpty()) return ItemStack.EMPTY;
-			if (SNSConfig.SERVER.doVoiding.get() && !ContainerType.canDoItemVoiding(itemContainer)) continue;
-
-			if (!voidedItem(remainder, maybeContainerInv.get())) return ItemStack.EMPTY;
+			if (!remainder.isEmpty()) continue;
 
 			return ItemStack.EMPTY;
 		}
 		return remainder;
-	}
-
-	/**
-	 * @param itemStack The Item Stack to try and void
-	 *
-	 * @return If the item was voided
-	 */
-	@SuppressWarnings("BooleanMethodIsAlwaysInverted")
-	private static boolean voidedItem(final ItemStack itemStack, final IItemHandler itemHandler) {
-		// Make sure there's a slot with the same type of item before voiding the pickup
-		for (int slotIndex = 0; slotIndex < itemHandler.getSlots(); slotIndex++) {
-			final ItemStack slotStack = itemHandler.getStackInSlot(slotIndex);
-			if (!ItemStack.isSameItem(slotStack, itemStack)) continue;
-			return true;
-		}
-		return false;
 	}
 
 	/**

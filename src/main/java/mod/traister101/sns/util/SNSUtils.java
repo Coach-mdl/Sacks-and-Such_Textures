@@ -22,8 +22,9 @@ public final class SNSUtils {
 	}
 
 	public static MutableComponent toggleTooltip(final boolean flag) {
-		return flag ? Component.translatable(ENABLED).withStyle(ChatFormatting.GREEN) : Component.translatable(DISABLED)
-				.withStyle(ChatFormatting.RED);
+		return flag ?
+				Component.translatable(ENABLED).withStyle(ChatFormatting.GREEN) :
+				Component.translatable(DISABLED).withStyle(ChatFormatting.RED);
 	}
 
 	public static MutableComponent intComponent(final int i) {
@@ -35,8 +36,7 @@ public final class SNSUtils {
 	 */
 	public enum ToggleType {
 		NONE(0, "", ""),
-		VOID(1, SacksNSuch.MODID + ".status.sack.auto_void", "void"),
-		PICKUP(2, SacksNSuch.MODID + ".status.sack.auto_pickup", "pickup");
+		PICKUP(1, SacksNSuch.MODID + ".status.sack.auto_pickup", "pickup");
 
 		private static final IntFunction<ToggleType> BY_ID = ByIdMap.continuous(ToggleType::getId, values(), ByIdMap.OutOfBoundsStrategy.ZERO);
 		@Getter
@@ -57,7 +57,6 @@ public final class SNSUtils {
 		public boolean supportsContainerType(final ContainerType containerType) {
 			return switch (this) {
 				case NONE -> false;
-				case VOID -> containerType.doesVoiding();
 				case PICKUP -> containerType.doesAutoPickup();
 			};
 		}

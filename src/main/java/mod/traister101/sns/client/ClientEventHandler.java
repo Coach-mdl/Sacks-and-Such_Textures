@@ -39,7 +39,6 @@ public final class ClientEventHandler {
 	}
 
 	private static void registerKeyBindings(final RegisterKeyMappingsEvent event) {
-		event.register(SNSKeybinds.TOGGLE_VOID);
 		event.register(SNSKeybinds.TOGGLE_PICKUP);
 	}
 

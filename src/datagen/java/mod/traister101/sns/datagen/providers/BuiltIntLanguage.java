@@ -1,6 +1,7 @@
 package mod.traister101.sns.datagen.providers;
 
 import mod.traister101.sns.SacksNSuch;
+import mod.traister101.sns.client.SNSKeybinds;
 import mod.traister101.sns.common.capability.LunchboxFoodTrait;
 import mod.traister101.sns.common.items.*;
 import mod.traister101.sns.datagen.SmartLanguageProvider;
@@ -39,12 +40,10 @@ public class BuiltIntLanguage extends SmartLanguageProvider {
 		addItemTranslations();
 
 		// Keybinds
-		add("sns.key.pickup", "Toggle Container Item Pickup");
-		add("sns.key.void", "Toggle Container Item Voiding");
+		add(SNSKeybinds.TOGGLE_PICKUP.getName(), "Toggle Container Item Pickup");
 		// Creative Tab
 		add("sns.creative_tab.sacks", "Sacks 'N Such");
 		// Tooltips
-		add(ContainerItem.TYPE_NO_VOID, "%s has item voiding disabled");
 		add(ContainerItem.TYPE_NO_PICKUP, "%s has item pickup disabled");
 		add(ContainerItem.HOLD_SHIFT_TOOLTIP, "Hold (Shift) for container info");
 		add(ContainerItem.PICKUP_TOOLTIP, "Item Pickup %s");
@@ -61,7 +60,6 @@ public class BuiltIntLanguage extends SmartLanguageProvider {
 		add(MobNetItem.STACK_NAME, "%s (%s)");
 		add(Horseshoes.HORSESHOE_MODIFIER_TOOLTIP, "When on Horse:");
 		add(ToggleType.PICKUP.langKey, "Item Pickup %s");
-		add(ToggleType.VOID.langKey, "Item Voiding %s");
 		add(SNSUtils.ENABLED, "Enabled");
 		add(SNSUtils.DISABLED, "Disabled");
 
