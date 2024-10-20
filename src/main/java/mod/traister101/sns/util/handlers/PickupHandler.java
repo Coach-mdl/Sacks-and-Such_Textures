@@ -67,7 +67,7 @@ public final class PickupHandler {
 	/**
 	 * Intercept block right clicks, so we can yoink TFC ground items
 	 */
-	public static void onBlockActivated(final RightClickBlock event) {
+	public static void onGroundBlockInteract(final RightClickBlock event) {
 		if (!SNSConfig.SERVER.doPickup.get()) return;
 
 		final BlockPos blockPos = event.getPos();
