@@ -1,7 +1,7 @@
 package mod.traister101.sns.util.handlers;
 
 import mod.traister101.sns.config.SNSConfig;
-import mod.traister101.sns.util.ContainerType;
+import mod.traister101.sns.util.*;
 import net.dries007.tfc.common.blocks.GroundcoverBlock;
 import net.dries007.tfc.common.blocks.rock.LooseRockBlock;
 import net.dries007.tfc.common.blocks.wood.FallenLeavesBlock;
@@ -24,7 +24,6 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBlock;
 import net.minecraftforge.eventbus.api.Event.Result;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.items.*;
 import net.minecraftforge.items.wrapper.PlayerMainInvWrapper;
 
@@ -129,7 +128,7 @@ public final class PickupHandler {
 
 		if (remainder.isEmpty()) return ItemStack.EMPTY;
 
-		if (ModList.get().isLoaded(CuriosApi.MODID)) {
+		if (SNSUtils.isCuriosPresent()) {
 			final var maybeCuriosItemHandler = CuriosApi.getCuriosInventory(player).resolve();
 
 			if (maybeCuriosItemHandler.isPresent()) {

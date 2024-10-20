@@ -2,10 +2,13 @@ package mod.traister101.sns.util;
 
 import mod.traister101.sns.SacksNSuch;
 import mod.traister101.sns.network.*;
+import top.theillusivec4.curios.api.CuriosApi;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.*;
 import net.minecraft.util.ByIdMap;
+
+import net.minecraftforge.fml.ModList;
 
 import lombok.Getter;
 import lombok.experimental.UtilityClass;
@@ -16,6 +19,8 @@ public final class SNSUtils {
 
 	public static final String ENABLED = SacksNSuch.MODID + ".enabled";
 	public static final String DISABLED = SacksNSuch.MODID + ".disabled";
+
+	public static final boolean CURIOS_LOADED = ModList.get().isLoaded(CuriosApi.MODID);
 
 	public static void sendTogglePacket(final ToggleType toggleType, final boolean flag) {
 		SNSPacketHandler.sendToServer(new ServerboundTogglePacket(flag, toggleType));
@@ -29,6 +34,10 @@ public final class SNSUtils {
 
 	public static MutableComponent intComponent(final int i) {
 		return Component.literal(String.valueOf(i));
+	}
+
+	public static boolean isCuriosPresent() {
+		return CURIOS_LOADED;
 	}
 
 	/**
