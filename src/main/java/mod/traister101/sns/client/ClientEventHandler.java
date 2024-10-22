@@ -30,13 +30,14 @@ public final class ClientEventHandler {
 
 	private static void onClientSetup(final FMLClientSetupEvent event) {
 		event.enqueueWork(() -> {
-			MenuScreens.register(SNSMenus.SACK_MENU.get(), ContainerItemScreen::new);
+			MenuScreens.register(SNSMenus.CONTAINER_ITEM_MENU.get(), ContainerItemScreen::new);
 			if (SNSUtils.isCuriosPresent()) CuriosCompat.clientSetup();
 		});
 	}
 
 	private static void registerKeyBindings(final RegisterKeyMappingsEvent event) {
 		event.register(SNSKeybinds.TOGGLE_PICKUP);
+		event.register(SNSKeybinds.OPEN_ITEM_CONTAINER);
 	}
 
 	private static void registerLayers(final RegisterLayerDefinitions event) {

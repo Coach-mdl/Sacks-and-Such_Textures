@@ -41,6 +41,7 @@ public class BuiltIntLanguage extends SmartLanguageProvider {
 
 		// Keybinds
 		add(SNSKeybinds.TOGGLE_PICKUP.getName(), "Toggle Container Item Pickup");
+		add(SNSKeybinds.OPEN_ITEM_CONTAINER.getName(), "Open Item Container");
 		// Creative Tab
 		add("sns.creative_tab.sacks", "Sacks 'N Such");
 		// Tooltips

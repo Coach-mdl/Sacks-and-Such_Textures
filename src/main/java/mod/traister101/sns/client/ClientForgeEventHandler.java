@@ -44,6 +44,10 @@ public final class ClientForgeEventHandler {
 		// Sanity check
 		if (MC.player == null) return;
 
+		if (SNSKeybinds.OPEN_ITEM_CONTAINER.consumeClick()) {
+			SNSPacketHandler.sendToServer(new ServerboundOpenContainerPacket());
+		}
+
 		if (SNSKeybinds.TOGGLE_PICKUP.isDown()) {
 			final ItemStack heldStack = MC.player.getMainHandItem();
 			final boolean flag = !NBTHelper.isAutoPickup(heldStack);

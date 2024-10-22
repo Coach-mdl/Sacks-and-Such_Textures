@@ -49,11 +49,15 @@ public class ContainerItem extends Item implements IItemSize {
 		this.type = type;
 	}
 
-	protected static SimpleMenuProvider createMenuProvider(final Player player, final InteractionHand hand, final ItemStack heldStack) {
-		//noinspection OptionalGetWithoutIsPresent our Sack should always have this capability
-		final IItemHandler itemHandler = heldStack.getCapability(ForgeCapabilities.ITEM_HANDLER).resolve().get();
-		return new SimpleMenuProvider((windowId, inventory, unused) -> new ContainerItemMenu(windowId, inventory, itemHandler, hand,
-				hand == InteractionHand.OFF_HAND ? -1 : player.getInventory().selected), heldStack.getHoverName());
+	private static SimpleMenuProvider createMenuProvider(final InteractionHand hand, final ItemStack heldStack) {
+		final IItemHandler itemHandler = heldStack.getCapability(ForgeCapabilities.ITEM_HANDLER).resolve().orElseThrow();
+
+		return new SimpleMenuProvider((windowId, inventory, unused) -> ContainerItemMenu.forHeld(windowId, inventory, itemHandler, hand),
+				heldStack.getHoverName());
+	}
+
+	protected static void openMenu(final ServerPlayer player, final InteractionHand hand, final ItemStack heldStack) {
+		NetworkHooks.openScreen(player, createMenuProvider(hand, heldStack), ContainerItemMenu.writeHeld(hand));
 	}
 
 	@Override
@@ -75,11 +79,7 @@ public class ContainerItem extends Item implements IItemSize {
 		}
 
 		if (!player.isShiftKeyDown()) {
-			NetworkHooks.openScreen(((ServerPlayer) player), createMenuProvider(player, hand, heldStack), byteBuf -> {
-				byteBuf.writeBoolean(hand == InteractionHand.MAIN_HAND);
-				byteBuf.writeInt(type.getSlotCount());
-				byteBuf.writeInt(type.getSlotCapacity());
-			});
+			openMenu((ServerPlayer) player, hand, heldStack);
 			return InteractionResultHolder.consume(heldStack);
 		}
 

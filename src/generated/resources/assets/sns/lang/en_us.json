@@ -30,6 +30,7 @@
   "sns.creative_tab.sacks": "Sacks 'N Such",
   "sns.disabled": "Disabled",
   "sns.enabled": "Enabled",
+  "sns.key.openItemContainer": "Open Item Container",
   "sns.key.pickup": "Toggle Container Item Pickup",
   "sns.stack_name.mob_net.with_mob": "%s (%s)",
   "sns.status.item_container.no_pickup": "%s has item pickup disabled",

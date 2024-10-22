@@ -19,8 +19,6 @@ import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 
-import net.minecraftforge.network.NetworkHooks;
-
 import lombok.Getter;
 import org.jetbrains.annotations.Nullable;
 import java.util.*;
@@ -53,11 +51,7 @@ public class LunchBoxItem extends ContainerItem {
 
 		if (!level.isClientSide) {
 			if (player.isShiftKeyDown()) {
-				NetworkHooks.openScreen((ServerPlayer) player, createMenuProvider(player, hand, heldStack), byteBuf -> {
-					byteBuf.writeBoolean(hand == InteractionHand.MAIN_HAND);
-					byteBuf.writeInt(type.getSlotCount());
-					byteBuf.writeInt(type.getSlotCapacity());
-				});
+				openMenu(((ServerPlayer) player), hand, heldStack);
 				return InteractionResultHolder.consume(heldStack);
 			}
 		}
@@ -134,6 +128,15 @@ public class LunchBoxItem extends ContainerItem {
 		}
 
 		@Override
+		public ItemStack insertItem(final int slotIndex, final ItemStack insertStack, final boolean simulate) {
+			final ItemStack insert = insertStack.copy();
+			FoodCapability.applyTrait(insert, LunchboxFoodTrait.LUNCHBOX);
+			final ItemStack remainder = super.insertItem(slotIndex, insert, simulate);
+			FoodCapability.removeTrait(remainder, LunchboxFoodTrait.LUNCHBOX);
+			return remainder;
+		}
+
+		@Override
 		public boolean isItemValid(final int slotIndex, final ItemStack itemStack) {
 			return itemStack.is(SNSItemTags.LUNCHBOX_FOOD) && super.isItemValid(slotIndex, itemStack);
 		}
@@ -142,15 +145,6 @@ public class LunchBoxItem extends ContainerItem {
 		public void setStackInSlot(final int slotIndex, final ItemStack itemStack) {
 			FoodCapability.applyTrait(itemStack, LunchboxFoodTrait.LUNCHBOX);
 			super.setStackInSlot(slotIndex, itemStack);
-		}
-
-		@Override
-		public ItemStack insertItem(final int slotIndex, final ItemStack insertStack, final boolean simulate) {
-			final ItemStack insert = insertStack.copy();
-			FoodCapability.applyTrait(insert, LunchboxFoodTrait.LUNCHBOX);
-			final ItemStack remainder = super.insertItem(slotIndex, insert, simulate);
-			FoodCapability.removeTrait(remainder, LunchboxFoodTrait.LUNCHBOX);
-			return remainder;
 		}
 
 		@Override
