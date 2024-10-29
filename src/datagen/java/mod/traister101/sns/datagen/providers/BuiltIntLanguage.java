@@ -18,9 +18,14 @@ import java.util.stream.Collectors;
 
 public class BuiltIntLanguage extends SmartLanguageProvider {
 
-	private static final Set<RegistryObject<? extends Item>> MANUAL_ITEM_LANG = Set.of(SNSItems.STEEL_HORSESHOE, SNSItems.BLACK_STEEL_HORSESHOE,
-			SNSItems.BLUE_STEEL_HORSESHOE, SNSItems.RED_STEEL_HORSESHOE, SNSItems.STEEL_HORSESHOES, SNSItems.BLACK_STEEL_HORSESHOES,
-			SNSItems.BLUE_STEEL_HORSESHOES, SNSItems.RED_STEEL_HORSESHOES);
+	/**
+	 * A set of our items that have registry names we can {@link #langify(String)} to get our actual item names
+	 */
+	public static final Set<RegistryObject<? extends Item>> SIMPLE_ITEM_LANG = Set.of(SNSItems.UNFINISHED_LEATHER_SACK, SNSItems.REINFORCED_FIBER,
+			SNSItems.REINFORCED_FABRIC, SNSItems.PACK_FRAME, SNSItems.LEATHER_STRIP, SNSItems.BOUND_LEATHER_STRIP, SNSItems.BUCKLE,
+			SNSItems.STRAW_BASKET, SNSItems.LEATHER_SACK, SNSItems.BURLAP_SACK, SNSItems.ORE_SACK, SNSItems.SEED_POUCH, SNSItems.FRAME_PACK,
+			SNSItems.LUNCHBOX, SNSItems.MOB_NET_ITEM, SNSItems.HIKING_BOOTS, SNSItems.STEEL_TOE_HIKING_BOOTS, SNSItems.BLACK_STEEL_TOE_HIKING_BOOTS,
+			SNSItems.BLUE_STEEL_TOE_HIKING_BOOTS, SNSItems.RED_STEEL_TOE_HIKING_BOOTS);
 
 	public BuiltIntLanguage(final PackOutput output) {
 		super(output, SacksNSuch.MODID, "en_us");
@@ -73,7 +78,7 @@ public class BuiltIntLanguage extends SmartLanguageProvider {
 	}
 
 	private void addItemTranslations() {
-		SNSItems.ITEMS.getEntries().stream().filter(o -> !MANUAL_ITEM_LANG.contains(o)).forEach(this::addSimpleItem);
+		SIMPLE_ITEM_LANG.forEach(this::addSimpleItem);
 		addItem(SNSItems.STEEL_HORSESHOE, "Steel Horseshoe");
 		addItem(SNSItems.BLACK_STEEL_HORSESHOE, "Black Steel Horseshoe");
 		addItem(SNSItems.BLUE_STEEL_HORSESHOE, "Blue Steel Horseshoe");
@@ -84,7 +89,7 @@ public class BuiltIntLanguage extends SmartLanguageProvider {
 		addItem(SNSItems.RED_STEEL_HORSESHOES, "Red Steel Horseshoes");
 	}
 
-	private void addSimpleItem(final RegistryObject<Item> item) {
-		add(item.get(), langify(item.getId().getPath()));
+	private void addSimpleItem(final RegistryObject<? extends Item> item) {
+		addItem(item, langify(item.getId().getPath()));
 	}
 }
