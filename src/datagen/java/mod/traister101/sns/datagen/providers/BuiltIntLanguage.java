@@ -27,8 +27,8 @@ public class BuiltIntLanguage extends SmartLanguageProvider {
 			SNSItems.LUNCHBOX, SNSItems.MOB_NET_ITEM, SNSItems.HIKING_BOOTS, SNSItems.STEEL_TOE_HIKING_BOOTS, SNSItems.BLACK_STEEL_TOE_HIKING_BOOTS,
 			SNSItems.BLUE_STEEL_TOE_HIKING_BOOTS, SNSItems.RED_STEEL_TOE_HIKING_BOOTS);
 
-	public BuiltIntLanguage(final PackOutput output) {
-		super(output, SacksNSuch.MODID, "en_us");
+	public BuiltIntLanguage(final PackOutput output, final ExtraLanguageProvider... extraLanguageProviders) {
+		super(output, SacksNSuch.MODID, "en_us", extraLanguageProviders);
 	}
 
 	/**

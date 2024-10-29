@@ -6,6 +6,7 @@ import top.theillusivec4.curios.api.CuriosApi;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.*;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.ByIdMap;
 
 import net.minecraftforge.fml.ModList;
@@ -30,6 +31,10 @@ public final class SNSUtils {
 		return flag ?
 				Component.translatable(ENABLED).withStyle(ChatFormatting.GREEN) :
 				Component.translatable(DISABLED).withStyle(ChatFormatting.RED);
+	}
+
+	public static ResourceLocation modLocation(final String name) {
+		return new ResourceLocation(SacksNSuch.MODID, name);
 	}
 
 	public static MutableComponent intComponent(final int i) {
