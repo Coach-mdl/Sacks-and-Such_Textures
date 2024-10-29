@@ -7,6 +7,7 @@ import mod.traister101.sns.common.items.LunchBoxItem.LunchboxHandler;
 import mod.traister101.sns.config.SNSConfig;
 import mod.traister101.sns.config.ServerConfig.ContainerConfig;
 import mod.traister101.sns.util.ContainerType;
+import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.capabilities.size.Size;
 
 import net.minecraft.nbt.CompoundTag;
@@ -107,7 +108,7 @@ public final class DefaultContainers {
 
 		@Override
 		public boolean isItemValid(final int slotIndex, final ItemStack itemStack) {
-			if (!SNSConfig.SERVER.allAllowFood.get() && itemStack.is(SNSItemTags.TFC_FOODS)) return false;
+			if (!SNSConfig.SERVER.allAllowFood.get() && itemStack.is(TFCTags.Items.FOODS)) return false;
 
 			if (!SNSConfig.SERVER.allAllowOre.get() && (itemStack.is(SNSItemTags.TFC_SMALL_ORE_PIECES) || itemStack.is(SNSItemTags.TFC_ORE_PIECES)))
 				return false;
@@ -124,7 +125,7 @@ public final class DefaultContainers {
 
 		@Override
 		public boolean isItemValid(final int slotIndex, final ItemStack itemStack) {
-			if (!SNSConfig.SERVER.allAllowFood.get() && itemStack.is(SNSItemTags.TFC_FOODS)) return false;
+			if (!SNSConfig.SERVER.allAllowFood.get() && itemStack.is(TFCTags.Items.FOODS)) return false;
 
 			return itemStack.is(SNSItemTags.ALLOWED_IN_SEED_POUCH) && super.isItemValid(slotIndex, itemStack);
 		}
@@ -138,7 +139,7 @@ public final class DefaultContainers {
 
 		@Override
 		public boolean isItemValid(final int slotIndex, final ItemStack itemStack) {
-			if (!SNSConfig.SERVER.allAllowFood.get() && itemStack.is(SNSItemTags.TFC_FOODS)) return false;
+			if (!SNSConfig.SERVER.allAllowFood.get() && itemStack.is(TFCTags.Items.FOODS)) return false;
 
 			return itemStack.is(SNSItemTags.ALLOWED_IN_ORE_SACK) && super.isItemValid(slotIndex, itemStack);
 		}

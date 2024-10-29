@@ -23,11 +23,6 @@ public final class SNSItemTags {
 	public static final TagKey<Item> TFC_SMALL_ORE_PIECES = fromTFC("small_ore_pieces");
 
 	/**
-	 * TFCs foods tag
-	 */
-	public static final TagKey<Item> TFC_FOODS = fromTFC("foods");
-
-	/**
 	 * TFCs seed tag
 	 */
 	public static final TagKey<Item> TFC_SEEDS = fromTFC("seeds");
