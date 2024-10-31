@@ -189,7 +189,7 @@ public class BuiltInRecipes extends RecipeProvider {
 		}
 	}
 
-	private static void horseshoesRecipes(final Consumer<FinishedRecipe> writer, final Horseshoes horseshoes, final Item horseshoe,
+	private static void horseshoesRecipes(final Consumer<FinishedRecipe> writer, final HorseshoesItem horseshoes, final Item horseshoe,
 			final MetalData metal) {
 		CraftingRecipeBuilder.shapeless(horseshoes).requires(horseshoe, 4).unlockedBy("has_horseshoe", has(horseshoe)).save(writer);
 		HeatingRecipe.melt(horseshoes, metal.getMeltTemp(), metal.meltMetal(), 400).save(writer);

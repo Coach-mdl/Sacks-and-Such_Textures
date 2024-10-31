@@ -64,7 +64,7 @@ public class BuiltIntLanguage extends SmartLanguageProvider {
 		add(MobNetItem.CANNOT_CAPTURE_SIZE, "The %s is too large to capture");
 		add(MobNetItem.CANNOT_PLACE, "There's not enough space to release captured %s");
 		add(MobNetItem.STACK_NAME, "%s (%s)");
-		add(Horseshoes.HORSESHOE_MODIFIER_TOOLTIP, "When on Horse:");
+		add(HorseshoesItem.HORSESHOE_MODIFIER_TOOLTIP, "When on Horse:");
 		add(HikingBootsItem.PREVENT_SLOW_TOOLTIP, "Prevents tall grass slowdown");
 		add(ToggleType.PICKUP.langKey, "Item Pickup %s");
 		add(SNSUtils.ENABLED, "Enabled");

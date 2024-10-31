@@ -1,6 +1,6 @@
 package mod.traister101.sns.mixins.common;
 
-import mod.traister101.sns.common.items.Horseshoes;
+import mod.traister101.sns.common.items.HorseshoesItem;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.*;
@@ -27,11 +27,11 @@ public abstract class HorseInventoryMenuMixin extends AbstractContainerMenu {
 	@Inject(method = "<init>", at = @At(value = "TAIL"))
 	private void sns$addHorseshoesSlot(final int id, final Inventory inventory, final Container container, final AbstractHorse horse,
 			final CallbackInfo ci) {
-		final Slot horseshoeSlot = this.addSlot(new Slot(container, Horseshoes.getHorseshoesSlot(horse), 8, (horse.canWearArmor() ? 54 : 36)) {
+		final Slot horseshoeSlot = this.addSlot(new Slot(container, HorseshoesItem.getHorseshoesSlot(horse), 8, (horse.canWearArmor() ? 54 : 36)) {
 
 			@Override
 			public boolean mayPlace(final ItemStack itemStack) {
-				return itemStack.getItem() instanceof Horseshoes && !this.hasItem();
+				return itemStack.getItem() instanceof HorseshoesItem && !this.hasItem();
 			}
 
 			@Override
@@ -43,7 +43,7 @@ public abstract class HorseInventoryMenuMixin extends AbstractContainerMenu {
 		final int size = slots.size();
 		Slot slot = horseshoeSlot;
 		// Squeeze the horseshoe slot right after the armor or saddle
-		for (int slotIndex = Horseshoes.getHorseshoesSlot(horse); slotIndex < size; slotIndex++) {
+		for (int slotIndex = HorseshoesItem.getHorseshoesSlot(horse); slotIndex < size; slotIndex++) {
 			slot.index = slotIndex;
 			slot = slots.set(slotIndex, slot);
 		}

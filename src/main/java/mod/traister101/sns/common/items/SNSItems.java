@@ -65,24 +65,25 @@ public final class SNSItems {
 			() -> new HikingBootsItem(new Properties().stacksTo(1).rarity(Rarity.EPIC), BootsArmorMaterial.RED_STEEL_TOE_HIKING_BOOTS,
 					SNSConfig.SERVER.redSteelToeHikingBoots.movementSpeed, SNSConfig.SERVER.redSteelToeHikingBoots.stepHeight));
 
-	public static final RegistryObject<Horseshoes> STEEL_HORSESHOES = registerHorseShoes(Default.STEEL, SNSConfig.SERVER.steelHorseshoeSpeedModifier);
+	public static final RegistryObject<HorseshoesItem> STEEL_HORSESHOES = registerHorseShoes(Default.STEEL,
+			SNSConfig.SERVER.steelHorseshoeSpeedModifier);
 
-	public static final RegistryObject<Horseshoes> BLACK_STEEL_HORSESHOES = registerHorseShoes(Default.BLACK_STEEL,
+	public static final RegistryObject<HorseshoesItem> BLACK_STEEL_HORSESHOES = registerHorseShoes(Default.BLACK_STEEL,
 			SNSConfig.SERVER.blackSteelHorseshoeSpeedModifier);
 
-	public static final RegistryObject<Horseshoes> BLUE_STEEL_HORSESHOES = registerHorseShoes(Default.BLUE_STEEL,
+	public static final RegistryObject<HorseshoesItem> BLUE_STEEL_HORSESHOES = registerHorseShoes(Default.BLUE_STEEL,
 			SNSConfig.SERVER.blueSteelHorseshoeSpeedModifier);
 
-	public static final RegistryObject<Horseshoes> RED_STEEL_HORSESHOES = registerHorseShoes(Default.RED_STEEL,
+	public static final RegistryObject<HorseshoesItem> RED_STEEL_HORSESHOES = registerHorseShoes(Default.RED_STEEL,
 			SNSConfig.SERVER.blueSteelHorseshoeSpeedModifier);
 
 	private static RegistryObject<Item> registerHorseshoe(final RegistryMetal metal) {
 		return registerSimple("metal/horseshoe/" + metal.getSerializedName(), new Properties().rarity(metal.getRarity()));
 	}
 
-	private static RegistryObject<Horseshoes> registerHorseShoes(final RegistryMetal metal, final Supplier<Double> horseshoeSpeedModifier) {
+	private static RegistryObject<HorseshoesItem> registerHorseShoes(final RegistryMetal metal, final Supplier<Double> horseshoeSpeedModifier) {
 		return register("metal/horseshoes/" + metal.getSerializedName(),
-				() -> new Horseshoes(new Properties().durability(metal.toolTier().getUses()).rarity(metal.getRarity()), horseshoeSpeedModifier));
+				() -> new HorseshoesItem(new Properties().durability(metal.toolTier().getUses()).rarity(metal.getRarity()), horseshoeSpeedModifier));
 	}
 
 	private static RegistryObject<ContainerItem> registerContainerItem(final ContainerType containerType) {

@@ -31,8 +31,8 @@ public abstract class AbstractHorseMixin extends Animal {
 	 */
 	@Inject(method = "tick", at = @At(value = "TAIL"))
 	private void sns$tickHorseshoe(final CallbackInfo ci) {
-		final ItemStack itemStack = inventory.getItem(Horseshoes.getHorseshoesSlot(getSelf()));
-		if (itemStack.getItem() instanceof Horseshoes) Horseshoes.horseshoeTick(itemStack, level(), getSelf());
+		final ItemStack itemStack = inventory.getItem(HorseshoesItem.getHorseshoesSlot(getSelf()));
+		if (itemStack.getItem() instanceof HorseshoesItem) HorseshoesItem.horseshoeTick(itemStack, level(), getSelf());
 	}
 
 	@Unique
@@ -49,14 +49,14 @@ public abstract class AbstractHorseMixin extends Animal {
 	private void sns$updateHorseshoe(final CallbackInfo ci) {
 		if (this.level().isClientSide) return;
 		//noinspection DataFlowIssue
-		getAttribute(Attributes.MOVEMENT_SPEED).removeModifier(Horseshoes.HORSE_SHOE_UUID);
-		if (!(inventory.getItem(Horseshoes.getHorseshoesSlot(getSelf())).getItem() instanceof final Horseshoes horseshoes)) return;
+		getAttribute(Attributes.MOVEMENT_SPEED).removeModifier(HorseshoesItem.HORSE_SHOE_UUID);
+		if (!(inventory.getItem(HorseshoesItem.getHorseshoesSlot(getSelf())).getItem() instanceof final HorseshoesItem horseshoes)) return;
 
 		final double speedModifier = horseshoes.horseshoeSpeedModifier.get();
 		if (speedModifier <= 0) return;
 		//noinspection DataFlowIssue
 		getAttribute(Attributes.MOVEMENT_SPEED).addTransientModifier(
-				new AttributeModifier(Horseshoes.HORSE_SHOE_UUID, "Horseshoe movement speed bonus", speedModifier, Operation.MULTIPLY_TOTAL));
+				new AttributeModifier(HorseshoesItem.HORSE_SHOE_UUID, "Horseshoe movement speed bonus", speedModifier, Operation.MULTIPLY_TOTAL));
 	}
 
 	/**
@@ -74,7 +74,7 @@ public abstract class AbstractHorseMixin extends Animal {
 	 */
 	@Inject(method = "addAdditionalSaveData", at = @At(value = "TAIL"))
 	private void sns$saveHorseshoe(final CompoundTag compoundTag, CallbackInfo ci) {
-		final ItemStack item = inventory.getItem(Horseshoes.getHorseshoesSlot(getSelf()));
+		final ItemStack item = inventory.getItem(HorseshoesItem.getHorseshoesSlot(getSelf()));
 		if (item.isEmpty()) return;
 		compoundTag.put("HorseshoesItem", item.save(new CompoundTag()));
 	}
@@ -88,6 +88,6 @@ public abstract class AbstractHorseMixin extends Animal {
 		if (!compoundTag.contains("HorseshoesItem", CompoundTag.TAG_COMPOUND)) return;
 
 		final ItemStack itemStack = ItemStack.of(compoundTag.getCompound("HorseshoesItem"));
-		if (itemStack.is(SNSItems.STEEL_HORSESHOES.get())) inventory.setItem(Horseshoes.getHorseshoesSlot(getSelf()), itemStack);
+		if (itemStack.is(SNSItems.STEEL_HORSESHOES.get())) inventory.setItem(HorseshoesItem.getHorseshoesSlot(getSelf()), itemStack);
 	}
 }

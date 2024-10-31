@@ -21,7 +21,7 @@ import java.util.function.Supplier;
 
 import static net.minecraft.world.item.ItemStack.ATTRIBUTE_MODIFIER_FORMAT;
 
-public class Horseshoes extends Item {
+public class HorseshoesItem extends Item {
 
 	public static final String LAST_STEP_NBT_KEY = "lastStep";
 	public static final String LAST_STEP_X_NBT_KEY = "x";
@@ -32,7 +32,7 @@ public class Horseshoes extends Item {
 	public static final String HORSESHOE_MODIFIER_TOOLTIP = SacksNSuch.MODID + ".tooltip.horseshoe.modifier";
 	public final Supplier<Double> horseshoeSpeedModifier;
 
-	public Horseshoes(final Properties properties, final Supplier<Double> horseshoeSpeedModifier) {
+	public HorseshoesItem(final Properties properties, final Supplier<Double> horseshoeSpeedModifier) {
 		super(properties);
 		this.horseshoeSpeedModifier = horseshoeSpeedModifier;
 	}
