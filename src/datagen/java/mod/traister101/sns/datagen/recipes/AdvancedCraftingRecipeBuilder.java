@@ -278,23 +278,7 @@ public abstract class AdvancedCraftingRecipeBuilder<B extends AdvancedCraftingRe
 					jsonObject.add("key", key);
 				}
 
-				{
-					final var result = new JsonObject();
-					{
-						final var stack = new JsonObject();
-						//noinspection DataFlowIssue
-						stack.addProperty("item", ForgeRegistries.ITEMS.getKey(this.result).toString());
-						if (count > 1) stack.addProperty("count", count);
-						result.add("stack", stack);
-						jsonObject.add("result", result);
-					}
-
-					{
-						final var modifiers = new JsonArray();
-						this.modifiers.forEach(stackModifier -> modifiers.add(stackModifier.toJson()));
-						result.add("modifiers", modifiers);
-					}
-				}
+				jsonObject.add("result", ItemStackModifier.writeItemStackProvider(result, count, modifiers));
 
 				jsonObject.addProperty("show_notification", showNotification);
 
