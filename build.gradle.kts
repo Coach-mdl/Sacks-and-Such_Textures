@@ -245,7 +245,7 @@ idea {
             ".idea",
             "gradle",
             "src/generated/resources/.cache",
-            "resources/venv",
+            "resources/models",
             "resources/.idea"
         ).map { file(it) }
         excludeDirs.addAll(exludes)
