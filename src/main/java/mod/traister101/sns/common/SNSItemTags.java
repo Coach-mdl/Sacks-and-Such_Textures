@@ -28,6 +28,16 @@ public final class SNSItemTags {
 	public static final TagKey<Item> TFC_SEEDS = fromTFC("seeds");
 
 	/**
+	 * TFCs soups tag
+	 */
+	public static final TagKey<Item> TFC_SOUPS = fromTFC("soups");
+
+	/**
+	 * TFCs salads tag
+	 */
+	public static final TagKey<Item> TFC_SALADS = fromTFC("salads");
+
+	/**
 	 * TFCs bread tag
 	 */
 	public static final TagKey<Item> TFC_BREADS = fromTFC("foods/breads");
