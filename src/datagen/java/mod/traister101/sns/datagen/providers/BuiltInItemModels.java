@@ -29,6 +29,7 @@ public class BuiltInItemModels extends ItemModelProvider {
 		basicItem(SNSItems.REINFORCED_FIBER.get());
 		basicItem(SNSItems.REINFORCED_FABRIC.get());
 		basicItem(SNSItems.PACK_FRAME.get());
+		basicItem(SNSItems.HIKING_BOOTS.get());
 
 		iconWithHeldModel(SNSItems.STRAW_BASKET.get());
 		iconWithHeldModel(SNSItems.LEATHER_SACK.get(),

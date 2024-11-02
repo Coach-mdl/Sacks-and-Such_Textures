@@ -2,23 +2,28 @@ package mod.traister101.sns.common.items;
 
 import com.google.common.collect.*;
 import mod.traister101.sns.SacksNSuch;
+import mod.traister101.sns.client.models.HikingBootsModel;
 import mod.traister101.sns.config.SNSConfig;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.*;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier.Operation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 
+import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.common.ForgeConfigSpec.DoubleValue;
 import net.minecraftforge.common.ForgeMod;
+import net.minecraftforge.common.util.NonNullLazy;
 
-import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.*;
 import java.util.*;
-import java.util.function.Supplier;
+import java.util.function.*;
 
 public class HikingBootsItem extends ArmorItem {
 
@@ -100,10 +105,37 @@ public class HikingBootsItem extends ArmorItem {
 		}
 	}
 
+	@Nullable
+	@Override
+	public String getArmorTexture(final ItemStack itemStack, final Entity entity, final EquipmentSlot slot, final String type) {
+		return SacksNSuch.MODID + ":textures/models/armor/hiking_boots.png";
+	}
+
 	@Override
 	public void appendHoverText(final ItemStack itemStack, @Nullable final Level level, final List<Component> components,
 			final TooltipFlag tooltipFlag) {
 		components.add(Component.translatable(PREVENT_SLOW_TOOLTIP));
 		super.appendHoverText(itemStack, level, components, tooltipFlag);
+	}
+
+	@Override
+	public void initializeClient(final Consumer<IClientItemExtensions> consumer) {
+		super.initializeClient(consumer);
+		consumer.accept(new IClientItemExtensions() {
+
+			private final NonNullLazy<HikingBootsModel<?>> bootsModel = NonNullLazy.of(
+					() -> new HikingBootsModel<>(Minecraft.getInstance().getEntityModels().bakeLayer(HikingBootsModel.LAYER_LOCATION)));
+
+			@NotNull
+			@Override
+			public HumanoidModel<?> getHumanoidArmorModel(final LivingEntity livingEntity, final ItemStack itemStack,
+					final EquipmentSlot equipmentSlot, final HumanoidModel<?> original) {
+				// TODO yucky
+				if (true) {
+					return new HikingBootsModel<>(HikingBootsModel.createBodyLayer().bakeRoot());
+				}
+				return bootsModel.get();
+			}
+		});
 	}
 }
