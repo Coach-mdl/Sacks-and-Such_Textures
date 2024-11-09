@@ -2,11 +2,12 @@ package mod.traister101.sns.common.items;
 
 import com.google.common.collect.*;
 import mod.traister101.sns.SacksNSuch;
-import mod.traister101.sns.client.models.HikingBootsModel;
+import mod.traister101.sns.client.models.*;
 import mod.traister101.sns.config.SNSConfig;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.*;
@@ -19,7 +20,6 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.common.ForgeConfigSpec.DoubleValue;
 import net.minecraftforge.common.ForgeMod;
-import net.minecraftforge.common.util.NonNullLazy;
 
 import org.jetbrains.annotations.*;
 import java.util.*;
@@ -123,19 +123,27 @@ public class HikingBootsItem extends ArmorItem {
 		super.initializeClient(consumer);
 		consumer.accept(new IClientItemExtensions() {
 
-			private final NonNullLazy<HikingBootsModel<?>> bootsModel = NonNullLazy.of(
-					() -> new HikingBootsModel<>(Minecraft.getInstance().getEntityModels().bakeLayer(HikingBootsModel.LAYER_LOCATION)));
+			private final EnumMap<BootModelType, HumanoidModel<?>> models = new EnumMap<>(BootModelType.class);
 
 			@NotNull
 			@Override
 			public HumanoidModel<?> getHumanoidArmorModel(final LivingEntity livingEntity, final ItemStack itemStack,
 					final EquipmentSlot equipmentSlot, final HumanoidModel<?> original) {
-				// TODO yucky
-				if (true) {
-					return new HikingBootsModel<>(HikingBootsModel.createBodyLayer().bakeRoot());
-				}
-				return bootsModel.get();
+				return models.computeIfAbsent(SNSConfig.CLIENT.bootModelType.get(), bootModelType -> {
+					final EntityModelSet entityModels = Minecraft.getInstance().getEntityModels();
+					return switch (bootModelType) {
+						case FANCY -> new FancyHikingBootsModel<>(entityModels.bakeLayer(FancyHikingBootsModel.LAYER_LOCATION));
+						case NO_FLOOF -> new NoFloofHikingBootsModel<>(entityModels.bakeLayer(NoFloofHikingBootsModel.LAYER_LOCATION));
+						case VANILLA -> new VanillaHikingBootsModel<>(entityModels.bakeLayer(VanillaHikingBootsModel.LAYER_LOCATION));
+					};
+				});
 			}
 		});
+	}
+
+	public enum BootModelType {
+		FANCY,
+		NO_FLOOF,
+		VANILLA
 	}
 }

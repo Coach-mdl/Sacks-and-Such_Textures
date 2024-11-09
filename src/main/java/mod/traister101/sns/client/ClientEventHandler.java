@@ -44,6 +44,8 @@ public final class ClientEventHandler {
 		event.registerLayerDefinition(FramePackModel.LAYER_LOCATION, FramePackModel::createBodyLayer);
 		event.registerLayerDefinition(SmallSackModel.LAYER_LOCATION, SmallSackModel::createBodyLayer);
 		event.registerLayerDefinition(LargeSackModel.LAYER_LOCATION, LargeSackModel::createBodyLayer);
-		event.registerLayerDefinition(HikingBootsModel.LAYER_LOCATION, HikingBootsModel::createBodyLayer);
+		event.registerLayerDefinition(FancyHikingBootsModel.LAYER_LOCATION, FancyHikingBootsModel::createBodyLayer);
+		event.registerLayerDefinition(VanillaHikingBootsModel.LAYER_LOCATION, VanillaHikingBootsModel::createBodyLayer);
+		event.registerLayerDefinition(NoFloofHikingBootsModel.LAYER_LOCATION, NoFloofHikingBootsModel::createBodyLayer);
 	}
 }
